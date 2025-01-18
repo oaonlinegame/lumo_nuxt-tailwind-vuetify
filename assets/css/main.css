@@ -1,0 +1,47 @@
+/* ในไฟล์ global.css หรือใน assets/css/main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ซ่อน scrollbar ทั่วไป */
+@layer utilities {
+  /* ซ่อน scrollbar ทั่วไป */
+  html,
+  body {
+    overflow: hidden; /* ซ่อน scrollbar โดยค่าเริ่มต้น */
+
+    /* แสดง scrollbar เมื่อ hover บน body */
+    html:hover,
+    body:hover {
+      overflow: auto; /* แสดง scrollbar เมื่อ hover */
+    }
+
+    /* สไตล์ของ scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px; /* กำหนดความกว้าง scrollbar */
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888; /* สีของ thumb */
+      border-radius: 4px; /* ทำให้ thumb มีมุมมน */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; /* สีของ thumb เมื่อ hover */
+    }
+  }
+
+  /* สไตล์ของ scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px; /* กำหนดความกว้าง scrollbar */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* สีของ thumb */
+    border-radius: 4px; /* ทำให้ thumb มีมุมมน */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* สีของ thumb เมื่อ hover */
+  }
+}
