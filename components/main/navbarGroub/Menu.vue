@@ -4,9 +4,9 @@
     <div class="flex flex-row items-center relative z-10">
       <!-- ใช้ v-for เพื่อวนลูปแสดงเมนูแต่ละรายการ -->
       <div
-        v-for="(item, index) in items"
+        v-for="(item, index) in items.slice(0, 4)"
         :key="index"
-        class="relative group hidden xl:flex flex-col items-center h-16 pt-2"
+        class="relative group hidden md:flex flex-col items-center h-16 pt-2"
         @mouseenter="handleMouseEnter(index)"
         @mouseleave="handleMouseLeave"
       >
@@ -17,24 +17,20 @@
 
         <!-- ส่วนนี้คือปุ่มเมนู -->
         <button
-          class="flex items-center relative space-x-2 text-xl text-black transition duration-300 py-2 px-3 hover:bg-gray-100 focus:outline-none w-36"
+          class="flex items-center relative space-x-2 text-xl text-black transition duration-300 py-2 px-3 hover:bg-gray-100 focus:outline-none"
           @click="toggleDropdown(index)"
         >
           <!-- เรียกฟังก์ชัน toggleDropdown(index) เมื่อคลิก -->
 
-          <!-- แสดง badge ถ้ามีการแจ้งเตือน (notifications > 0) -->
-          <v-badge v-if="item.notifications > 0" color="red" :content="item.notifications">
+          <!-- แสดง badge -->
+          <v-badge
+            v-if="typeof item.notifications === 'number' && item.notifications > 0"
+            color="red"
+            :content="item.notifications > 99 ? '99+' : item.notifications"
+          >
             <v-icon>{{ item.icon }}</v-icon>
-
-            <!-- แสดงไอคอนของเมนู -->
           </v-badge>
-
-          <!-- ถ้าไม่มีการแจ้งเตือน (notifications === 0) -->
-          <v-badge v-else>
-            <v-icon>{{ item.icon }}</v-icon>
-
-            <!-- แสดงไอคอนของเมนู -->
-          </v-badge>
+          <v-icon v-else>{{ item.icon }}</v-icon>
 
           <!-- ชื่อของเมนูจะแสดงเฉพาะหน้าจอขนาดใหญ่ (xl) -->
           <span class="hidden xl:block text-md text-gray-400">{{ item.name }}</span>
@@ -64,6 +60,12 @@ export default {
       hoverIndex: null, // เก็บ index ของเมนูที่เมาส์กำลังชี้อยู่ (เริ่มต้นไม่มีเมนูไหนถูกชี้)
       items: [
         // ข้อมูลเมนูทั้งหมด
+        {
+          name: "Work", // ชื่อเมนูที่จะแสดง
+          icon: "mdi mdi-calendar-check", // ไอคอนที่จะแสดงในเมนู
+          notifications: 0, // จำนวนการแจ้งเตือนในเมนูนี้
+          subItems: [{ name: "SubItem 1-1" }, { name: "SubItem 1-2" }] // เมนูย่อย
+        },
         {
           name: "Chat", // ชื่อเมนูที่จะแสดง
           icon: "mdi mdi-chat-processing-outline", // ไอคอนที่จะแสดงในเมนู
