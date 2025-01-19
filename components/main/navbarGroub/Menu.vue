@@ -22,7 +22,7 @@
         >
           <!-- เรียกฟังก์ชัน toggleDropdown(index) เมื่อคลิก -->
 
-          <!-- แสดง badge -->
+          <!-- แสดง badge ถ้ามีการแจ้งเตือน (notifications > 0) -->
           <v-badge
             v-if="typeof item.notifications === 'number' && item.notifications > 0"
             color="red"
@@ -60,12 +60,6 @@ export default {
       hoverIndex: null, // เก็บ index ของเมนูที่เมาส์กำลังชี้อยู่ (เริ่มต้นไม่มีเมนูไหนถูกชี้)
       items: [
         // ข้อมูลเมนูทั้งหมด
-        {
-          name: "Work", // ชื่อเมนูที่จะแสดง
-          icon: "mdi mdi-calendar-check", // ไอคอนที่จะแสดงในเมนู
-          notifications: 0, // จำนวนการแจ้งเตือนในเมนูนี้
-          subItems: [{ name: "SubItem 1-1" }, { name: "SubItem 1-2" }] // เมนูย่อย
-        },
         {
           name: "Chat", // ชื่อเมนูที่จะแสดง
           icon: "mdi mdi-chat-processing-outline", // ไอคอนที่จะแสดงในเมนู
