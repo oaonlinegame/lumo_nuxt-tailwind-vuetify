@@ -1,8 +1,5 @@
 {
-  "menu": {
-    "work": "Work",
-    "chat": "Chat",
-    "notification": "Notification",
-    "setting": "Setting"
-  }
+  "welcome": "Welcome",
+  "hello": "Hello {name}!",
+  "changeLanguage": "Change language"
 }

@@ -14,6 +14,7 @@
         <Menu></Menu>
         <!-- ไอคอน User (อยู่ตลอด) -->
         <user></user>
+        <button>EN</button>
       </div>
     </div>
 

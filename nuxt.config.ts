@@ -1,9 +1,14 @@
-// filepath: /c:/Users/Siripong/Desktop/Project/lumo/lumotailwind/lumo/nuxt.config.ts
+// nuxt.config.ts
 import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
+  modules: [
+    "@nuxtjs/i18n/nuxt" // ใช้ @nuxtjs/i18n/nuxt
+    // ... อื่นๆ
+  ],
+
   css: [
     "~/assets/css/main.css",
     "@fortawesome/fontawesome-free/css/all.css",
@@ -21,5 +26,5 @@ export default defineNuxtConfig({
       autoprefixer: {}
     }
   },
-  plugins: ["~/plugins/vuetify.js"]
+  plugins: ["~/plugins/vuetify.js", "~/plugins/i18n.ts"] //เพิ่ม plugins i18n เข้าไปด้วย
 });

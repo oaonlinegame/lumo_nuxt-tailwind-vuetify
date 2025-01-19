@@ -1,8 +1,5 @@
 {
-  "menu": {
-    "work": "งาน",
-    "chat": "แชท",
-    "notification": "การแจ้งเตือน",
-    "setting": "ตั้งค่า"
-  }
+  "welcome": "Welcome",
+  "hello": "Hello {name}!",
+  "changeLanguage": "Change language"
 }
