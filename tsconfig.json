@@ -1,7 +1,15 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
-  "include": ["./**/*", "!./components/UI/LeftSide.vue", "!./components/UI/Linput.vue", "!./components/UI/test.vue", "!./components/UI/test2.vue", "!./components/SwiperComponent.vue", "!./components/SwiperComponent.vue"],
+  "include": [
+    "./**/*",
+    "!./components/UI/LeftSide.vue",
+    "!./components/UI/Linput.vue",
+    "!./components/UI/test.vue",
+    "!./components/UI/test2.vue",
+    "!./components/SwiperComponent.vue",
+    "!./components/SwiperComponent.vue"
+  ],
   "compilerOptions": {
     "types": ["vite/client"]
   }

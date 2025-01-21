@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- ส่วนนี้เป็นคอนเทนเนอร์หลักของเมนูทั้งหมด -->
     <div class="flex flex-row items-center relative z-10">
-      <!-- ใช้ v-for เพื่อวนลูปแสดงเมนูแต่ละรายการ -->
+      <h1>{{ $translator.t("welcome") }}</h1>
+
       <div
         v-for="(item, index) in items.slice(0, 4)"
         :key="index"
@@ -10,19 +10,10 @@
         @mouseenter="handleMouseEnter(index)"
         @mouseleave="handleMouseLeave"
       >
-        <!-- ลูปแต่ละ item ในตัวแปร items -->
-        <!-- ใช้ index เป็น key เพื่อช่วยให้ Vue จัดการการเรนเดอร์ -->
-        <!-- เรียกฟังก์ชัน handleMouseEnter(index) เมื่อเมาส์ชี้ -->
-        <!-- เรียกฟังก์ชัน handleMouseLeave เมื่อเมาส์ออก -->
-
-        <!-- ส่วนนี้คือปุ่มเมนู -->
         <button
-          class="flex items-center relative space-x-2 text-xl text-black transition duration-300 py-2 px-3 hover:bg-gray-100 focus:outline-none"
+          class="flex items-center relative space-x-2 text-xl text-black transition duration-300 py-2 px-3 focus:outline-none"
           @click="toggleDropdown(index)"
         >
-          <!-- เรียกฟังก์ชัน toggleDropdown(index) เมื่อคลิก -->
-
-          <!-- แสดง badge -->
           <v-badge
             v-if="typeof item.notifications === 'number' && item.notifications > 0"
             color="red"
@@ -32,20 +23,20 @@
           </v-badge>
           <v-icon v-else>{{ item.icon }}</v-icon>
 
-          <!-- ชื่อของเมนูจะแสดงเฉพาะหน้าจอขนาดใหญ่ (xl) -->
-          <span class="hidden xl:block text-md text-gray-400">{{ item.name }}</span>
+          <!-- ปรับให้ใช้ฟอนต์ขนาดเล็กลงหากเป็นภาษาไทย -->
+          <span class="hidden xl:block text-md text-gray-400 truncate" :class="{ 'text-sm': isThai(item.name) }">
+            {{ $translator.t(item.name.toLowerCase()) }}
+          </span>
         </button>
 
-        <!-- เส้นขีดล่างที่ใช้แสดงว่าปุ่มเมนูอยู่ในสถานะ hover หรือเปิด dropdown -->
         <div
           class="absolute bottom-0 left-0 h-1 bg-blue-500 transition-all duration-300"
           :class="{
-            'w-full': hoverIndex === index || openDropdownIndex === index, // เส้นยาวเต็มเมื่อเมาส์ชี้หรือเมนูเปิด
-            'w-0': hoverIndex !== index && openDropdownIndex !== index // เส้นยาว 0 เมื่อเมาส์ไม่ได้ชี้และเมนูปิด
+            'w-full': hoverIndex === index || openDropdownIndex === index,
+            'w-0': hoverIndex !== index && openDropdownIndex !== index
           }"
         ></div>
 
-        <!-- Dropdown แสดงเมนูย่อย -->
         <Dropdown :visible="openDropdownIndex === index" :subItems="item.subItems" />
       </div>
     </div>
@@ -96,6 +87,10 @@ export default {
     document.removeEventListener("click", this.handleClickOutside);
   },
   methods: {
+    isThai(text) {
+      const regex = /^[\u0E00-\u0E7F]+$/;
+      return regex.test(text);
+    },
     toggleDropdown(index) {
       // ถ้า dropdown ที่คลิกอยู่เปิดแล้ว ให้ปิด
       // ถ้าไม่ได้เปิด ให้เปลี่ยน index นั้นเป็น openDropdownIndex
@@ -121,5 +116,8 @@ export default {
 </script>
 
 <style scoped>
-/* สไตล์ CSS เฉพาะสำหรับ component นี้ */
+/* ลดขนาดฟอนต์เฉพาะในกรณีที่เป็นภาษาไทย */
+.text-sm {
+  font-size: 0.875rem; /* ขนาดฟอนต์เล็กลง */
+}
 </style>

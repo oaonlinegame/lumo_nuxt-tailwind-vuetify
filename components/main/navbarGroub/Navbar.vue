@@ -1,8 +1,9 @@
 <template>
   <nav class="bg-white w-full fixed top-0 left-0 z-50 shadow-md">
     <!-- สำหรับหน้าจอขนาดใหญ่ (แถวเดียว) -->
-    <div class="hidden md:grid grid-cols-3 items-center px-4 h-16 relative">
+    <div class="hidden md:grid grid-cols-3 justify-between px-4 h-16 relative">
       <!-- คอลัมน์ซ้าย: LOGO + ชื่อเว็บ -->
+
       <logo></logo>
 
       <!-- คอลัมน์กลาง: ช่อง SEARCH -->
@@ -14,6 +15,8 @@
         <Menu></Menu>
         <!-- ไอคอน User (อยู่ตลอด) -->
         <user></user>
+
+        <LanguageSwitcher />
       </div>
     </div>
 

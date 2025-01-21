@@ -1,5 +1,5 @@
-// filepath: /c:/Users/Siripong/Desktop/Project/lumo/lumotailwind/lumo/nuxt.config.ts
 import { defineNuxtConfig } from "nuxt/config";
+import { VitePWA } from "vite-plugin-pwa";
 
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
@@ -21,5 +21,21 @@ export default defineNuxtConfig({
       autoprefixer: {}
     }
   },
-  plugins: ["~/plugins/vuetify.js"]
+  plugins: ["~/plugins/vuetify.js"],
+  vite: {
+    plugins: [
+      VitePWA({
+        registerType: "autoUpdate", // ตัวเลือกในการทำ Auto Update สำหรับ Service Worker
+        manifest: {
+          name: "Lumo App",
+          short_name: "Lumo",
+          description: "Your awesome PWA app",
+          start_url: "/",
+          display: "standalone",
+          background_color: "#ffffff",
+          theme_color: "#000000"
+        }
+      })
+    ]
+  }
 });

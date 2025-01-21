@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="flex items-center">
     <!-- คอลัมน์ซ้าย: LOGO + ชื่อเว็บ -->
     <div class="flex items-center space-x-2">
       <button class="fas fa-bars p-3 text-2xl rounded-md hover:bg-gray-200 focus:outline-none"></button>
